@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { datasetInfo } from '../lib/dataset';
+import { SITE } from '../lib/site';
+---
+<Layout title="About this desk">
+  <main id="main" class="home">
+    <h1>About this desk</h1>
+    <p class="intro">Designed for finding and citing Shakespeare. Folger is better for reading.</p>
+    <h2>Read on Folger. Work with passages here.</h2>
+    <p>For quite some time, citing Shakespeare in academic essays was an irritating problem for me. The Folger edition is among the most, if not the most, authoritative sources freely available online, and the Folger website's design is excellent for reading, so finding it was helpful. However, copying lines from it was still manual, and the especially problematic part was getting line numbers right in the subsequent citation. However, upon discovering the Folger Digital Texts, I thought a solution may finally be at hand, and thankfully it was. The result is this website, which allows you to read any play, search within it or navigate to any part of it, and ultimately, to cite it. Citation options include a few presets like MLA, APA, and Chicago and also include a custom option for greater flexibility. More below.</p>
+    <p>For sustained reading, editorial introductions, notes, and the authoritative presentation of the edition, I recommend <a href={datasetInfo.sourceUrl}>the original Folger website</a>. This independent website is best suited to working with passages when you want more control over search and especially easier quotation and citation.</p>
+    <ul class="citation-guidance">
+      <li>Search within a play using words, prefixes, or quoted phrases, then jump to the matching line.</li>
+      <li>Link to individual lines or navigate by act.scene.line reference.</li>
+      <li>Select a passage and use “Cite this range,” or enter an inclusive range manually.</li>
+      <li>Choose MLA, Chicago, APA 7, or custom quotation layouts; copy formatted or plain text.</li>
+      <li>Download RIS or BibTeX source records for a citation manager. Exports contain metadata and a range note, not the quotation.</li>
+    </ul>
+    <h2>Data and its limits</h2>
+    <p>Data received and built from Folger on <time datetime={datasetInfo.receivedOn}>{datasetInfo.receivedOn}</time>. While the overall structure of plays in authoritative editions like Folger's are largely consistent, Folger may have updated their edition since this time. Because of this, the GitHub repository of this project also includes the Python scripts used to convert the original XML files from Folger into JSON, in case you want to build them and run this app locally.</p>
+    <p>{datasetInfo.builtFrom}. Tests compare this website with the supplied JSON; they do not prove fidelity to the original XML. Original typography, shared verse lines, and editorial signs should be checked on Folger. Citation output identifies this downstream rendition and keeps unverified publication dates undated.</p>
+    <p>Search is per play, not across the entire corpus. If search and citation controls return an error for you, please make sure your browser supports JavaScript and has it enbaled.</p>
+    <p><a href="/sources/">Sources, edition credits, rights, and detailed citation guidance →</a></p>
+    <h2>Code and acknowledgments</h2>
+    <p>With gratitude to the Folger Shakespeare Library, the editors, and everyone who made Folger Digital Texts possible. Their meticulous work and generosity has enabled this tool and has personally helped me a great deal with my own research and thesis. This project is not affiliated with or endorsed by Folger. Folger-derived text is licensed for noncommercial use under CC BY-NC 3.0; the original project code is separately licensed.</p>
+    <p>This project was entirely vibecoded by AI, though I was involved in planning and tweaking.
+    <p><a href={SITE.repository}>GitHub repository ↗</a></p>
+    <p><a href="/">Return to the library →</a></p>
+  </main>
+</Layout>

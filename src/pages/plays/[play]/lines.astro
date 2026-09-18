@@ -1,0 +1,37 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { playStaticPaths, type AvailablePlay } from '../../../lib/plays';
+import { buildLineIndex, scenePath } from '../../../lib/reader';
+export const getStaticPaths = playStaticPaths;
+interface Props { play: AvailablePlay }
+const { play } = Astro.props;
+const sections = play.sections;
+const lines = buildLineIndex(sections, play.play_id);
+---
+<Layout title={`Line index · ${play.title}`}>
+  <div class="reader-layout">
+    <aside class="sidebar">
+      <details open>
+        <summary>Contents · {play.title}</summary>
+        <nav aria-label="Play sections">
+          {sections.map(item => <a href={scenePath(item.slug, play.play_id)}>{item.title}</a>)}
+        </nav>
+      </details>
+    </aside>
+    <main id="main" class="reader">
+      <a href="/">← Library</a>
+      <h1>Every line, by reference</h1>
+      <p>This index lists all {lines.length} lines of {play.title} using the supplied act.scene.line or named references (such as EPI.22). It works without JavaScript and is the fallback for the reader's “go to line” form.</p>
+      {sections.map(section => (
+        <section class="line-index-group">
+          <h2>{section.title}</h2>
+          <ul class="line-index">
+            {lines.filter(line => line.path === scenePath(section.slug, play.play_id)).map(line => (
+              <li><a href={`${line.path}#${line.anchor}`}>{line.ftln}</a></li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </main>
+  </div>
+</Layout>

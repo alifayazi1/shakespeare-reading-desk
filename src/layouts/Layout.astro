@@ -1,0 +1,31 @@
+---
+import '../styles/global.css';
+import { SITE } from '../lib/site';
+import { datasetInfo } from '../lib/dataset';
+interface Props { title: string }
+const { title } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="An independent Shakespeare reading desk built from Folger Digital Texts. Read and search the available plays." />
+    <title>{title} — Shakespeare Reading Desk</title>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/">Shakespeare Reading Desk</a>
+      <nav class="site-nav" aria-label="Site"><a href="/">Library</a><a href="/about/">About</a><a href={SITE.repository}>GitHub ↗</a></nav>
+    </header>
+    <slot />
+    <footer class="site-footer">
+      <p><a href="/sources/">Sources and citation guidance</a></p>
+      <p>With gratitude to the <a href="https://www.folger.edu/">Folger Shakespeare Library</a> and the creators of Folger Digital Texts.</p>
+      <p>Text derived from Folger XML, converted to JSON and rendered here as HTML. Licensed under <a href="https://creativecommons.org/licenses/by-nc/3.0/">CC BY-NC 3.0</a>. Noncommercial use only.</p>
+      <p>Data received and built from Folger: <time datetime={datasetInfo.receivedOn}>{datasetInfo.receivedOn}</time>.</p>
+      <p>This independent project is not affiliated with or endorsed by Folger. <a href="/about/">About this desk</a> · <a href={SITE.repository}>GitHub ↗</a></p>
+    </footer>
+  </body>
+</html>

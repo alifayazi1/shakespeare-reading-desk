@@ -1,0 +1,7 @@
+{
+  "$comment": "Project data provenance, read at build time by the About page, the library page, the Sources page, and the footer. receivedOn is the maintainer-reported date the data was received and built from Folger, not an independently verified edition publication date or the latest site rebuild date. Update when replacing the corpus.",
+  "source": "Folger Digital Texts",
+  "sourceUrl": "https://www.folger.edu/explore/shakespeares-works/",
+  "receivedOn": "2026-07-23",
+  "builtFrom": "Folger XML converted to JSON in corpus/plays/"
+}

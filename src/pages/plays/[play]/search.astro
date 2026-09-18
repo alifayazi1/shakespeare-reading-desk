@@ -1,0 +1,153 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { playStaticPaths, type AvailablePlay } from '../../../lib/plays';
+import { buildSearchIndex } from '../../../lib/search';
+import { scenePath } from '../../../lib/reader';
+export const getStaticPaths = playStaticPaths;
+interface Props { play: AvailablePlay }
+const { play } = Astro.props;
+const sections = play.sections;
+const documents = buildSearchIndex(sections, play.play_id);
+---
+<Layout title={`Search · ${play.title}`}>
+  <div class="reader-layout">
+    <aside class="sidebar">
+      <details open>
+        <summary>Contents · {play.title}</summary>
+        <nav aria-label="Play sections">
+          {sections.map(item => <a href={scenePath(item.slug, play.play_id)}>{item.title}</a>)}
+        </nav>
+      </details>
+    </aside>
+    <main id="main" class="reader">
+      <a href="/">← Library</a>
+      <h1>Search the play</h1>
+      <p>Every line and stage direction of {play.title} — {documents.length} passages in all. Matching ignores capitalization and apostrophe style; single words also match word-beginnings (so <em>sorcer</em> finds <em>sorcerers</em>), and “quoted phrases” match word for word.</p>
+      <p>All terms must occur within one line or stage direction; phrases do not span lines. Punctuation separates words; accents are ignored.</p>
+      <p><a href={`/plays/${play.play_id}/lines/`}>Browse the full line index</a></p>
+      <form data-play={play.play_id} id="search-form" hidden>
+        <label for="search-input">Search the text</label>
+        <div class="line-jump">
+          <input id="search-input" name="q" type="search" autocomplete="off" aria-describedby="search-status" placeholder="e.g. rope, sorcer, “healthful welcome”" />
+          <button type="submit">Search</button>
+        </div>
+        <p id="search-status" role="status"></p>
+      </form>
+      <div id="search-results" aria-label="Search results"></div>
+      <p class="notice">Live search needs JavaScript. The full <a href={`/plays/${play.play_id}/lines/`}>line index</a> works without it.</p>
+    </main>
+  </div>
+</Layout>
+<script>
+  import { isScenePath } from '../../../lib/reader';
+  import { highlightSpans, matchDocuments, parseQuery, type SearchDocument, type SearchTerm } from '../../../lib/search';
+
+  const form = document.querySelector<HTMLFormElement>('#search-form');
+  const input = document.querySelector<HTMLInputElement>('#search-input');
+  const status = document.querySelector<HTMLParagraphElement>('#search-status');
+  const results = document.querySelector<HTMLDivElement>('#search-results');
+
+  interface Passage extends SearchDocument {}
+  let index: Passage[] | null = null;
+  let terms: SearchTerm[] = [];
+
+  const resultItem = (passage: Passage): HTMLElement => {
+    const item = document.createElement('article');
+    item.className = 'search-result';
+    const meta = document.createElement('p');
+    meta.className = 'result-meta';
+    if (passage.speaker) {
+      const speaker = document.createElement('span');
+      speaker.className = 'speaker';
+      speaker.textContent = passage.speaker;
+      meta.append(speaker);
+    }
+    const ref = document.createElement('a');
+    ref.href = `${passage.path}#${passage.anchor}`;
+    ref.textContent = passage.ref ?? 'unreferenced passage';
+    meta.append(ref);
+    const kind = document.createElement('span');
+    kind.className = 'result-kind';
+    kind.textContent = passage.kind === 'line' ? 'line' : 'stage direction';
+    meta.append(kind);
+    item.append(meta);
+    const text = document.createElement('p');
+    text.className = 'result-text';
+    let cursor = 0;
+    for (const span of highlightSpans(passage.text, terms)) {
+      if (span.start > cursor) text.append(passage.text.slice(cursor, span.start));
+      const mark = document.createElement('mark');
+      mark.textContent = passage.text.slice(span.start, span.end);
+      text.append(mark);
+      cursor = span.end;
+    }
+    if (cursor < passage.text.length) text.append(passage.text.slice(cursor));
+    item.append(text);
+    return item;
+  };
+
+  const runSearch = (query: string) => {
+    if (!input || !status || !results) return;
+    terms = parseQuery(query);
+    if (!terms.length) {
+      results.replaceChildren();
+      status.textContent = '';
+      history.replaceState(null, '', location.pathname);
+      return;
+    }
+    history.replaceState(null, '', `${location.pathname}?q=${encodeURIComponent(query)}`);
+    const hits = matchDocuments(index ?? [], terms);
+    results.replaceChildren(...hits.map(resultItem));
+    if (hits.length) {
+      status.textContent = `${hits.length} ${hits.length === 1 ? 'passage matches' : 'passages match'} — results follow, in reading order.`;
+    } else {
+      status.textContent = `No passages match. Try shorter words or fewer terms; “quoted phrases” must match word for word.`;
+    }
+  };
+
+  let pending = false;
+  const search = async () => {
+    if (!form || !input || !status || pending) return;
+    if (!parseQuery(input.value).length) { runSearch(input.value); return; }
+    pending = true;
+    form.setAttribute('aria-busy', 'true');
+    results?.replaceChildren();
+    status.textContent = 'Searching…';
+    try {
+      if (!index) {
+        const response = await fetch(`/plays/${form.dataset.play}/search.json`);
+        if (!response.ok) throw new Error('Search index request failed');
+        const data: unknown = await response.json();
+        if (!Array.isArray(data) || !data.every(passage => passage &&
+          typeof passage.text === 'string' && typeof passage.anchor === 'string' &&
+          typeof passage.path === 'string' && isScenePath(passage.path, form.dataset.play ?? '') &&
+          (passage.kind === 'line' || passage.kind === 'stage_direction' || passage.kind === 'label') &&
+          (passage.ref === null || typeof passage.ref === 'string') &&
+          (passage.speaker === null || typeof passage.speaker === 'string'))) {
+          throw new Error('Invalid search index');
+        }
+        index = data as Passage[];
+      }
+      input.removeAttribute('aria-invalid');
+      runSearch(input.value);
+    } catch {
+      status.textContent = 'The search index could not be loaded. Check your connection and try again, or browse the full line index.';
+    } finally {
+      pending = false;
+      form.removeAttribute('aria-busy');
+    }
+  };
+  form?.addEventListener('submit', event => {
+    event.preventDefault();
+    void search();
+  });
+
+  if (form && input && status && results) {
+    form.hidden = false;
+    const query = new URLSearchParams(location.search).get('q');
+    if (query) {
+      input.value = query;
+      void search();
+    }
+  }
+</script>

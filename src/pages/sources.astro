@@ -1,0 +1,49 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { discoverPlays } from '../lib/plays';
+import { sourceFor } from '../lib/citations';
+import { datasetInfo } from '../lib/dataset';
+import { authorCredit } from '../lib/authors';
+const plays = discoverPlays();
+---
+<Layout title="Sources and citation guidance">
+  <main id="main" class="home">
+    <a href="/">← Library</a>
+    <h1>Sources and citation guidance</h1>
+    <p>With gratitude to the Folger Shakespeare Library, the editors, and the creators of Folger Digital Texts.</p>
+    <h2>Which text are you reading?</h2>
+    <p>This tool renders supplied JSON conversions of Folger Digital Texts. The conversion and HTML rendering are changes made downstream of Folger. </p>
+    <p>Data received and built from Folger: <time datetime={datasetInfo.receivedOn}>{datasetInfo.receivedOn}</time>.</p>
+    <h2>Authors and editors are different credits</h2>
+    <p>William Shakespeare is the credited playwright for these texts. Folger explicitly identifies <a href="https://www.folger.edu/explore/shakespeares-works/the-two-noble-kinsmen/">The Two Noble Kinsmen as written by Shakespeare and John Fletcher</a>; this tool includes both in its citations and downloads. Barbara Mowat and Paul Werstine are edition editors. Their introduction bylines were checked on all 38 mapped Folger pages on 2026-09-17; evidence is linked below.</p>
+    <p>Authorship is not equally certain for every collaboration: see Folger’s <a href="https://www.folger.edu/explore/shakespeares-works/henry-viii/appendix-on-authorship/">Henry VIII authorship appendix</a> and <a href="https://www.folger.edu/explore/shakespeares-works/pericles/an-introduction-to-this-text/">Pericles introduction</a>. This tool retains the edition’s Shakespeare attribution rather than assert disputed collaborators.</p>
+    <h2>Referencing a passage</h2>
+    <p>Record the play’s full title and its displayed act.scene.line reference, or its named reference such as EPI.22 for an epilogue. Click a line number to obtain this desk’s passage link, then copy the address from your browser. For a bibliography, consult the Folger source page and its <strong>Cite</strong> control, and follow the style required by your institution.</p>
+    <p>The JSON field <code>ftln</code> contains the displayed act.scene.line reference here; an anchor such as <code>ftln-1857</code> is a separate identifier, not a page number. Stage directions and unnumbered passages must not be assigned invented line numbers. Local anchors are tied to the supplied corpus snapshot and may change when it is replaced.</p>
+    <h2 id="quotation-guidance">MLA, Chicago, APA 7 and custom quotations</h2>
+    <p>Select passage text to reveal <strong>Cite this range</strong>, or press Alt+Shift+C while a range is selected. Partial selections expand to whole numbered lines. Manual reference entry is always available.</p>
+    <p><strong>Block · preserve source lines</strong> and <strong>One line · slash-separated</strong> explicitly override standard prose reflow. Custom mode chooses a base citation style, line separator, speaker labels and inline quotation marks; it is not a standard style. RIS and BibTeX downloads contain source metadata and a range note, not quotation text. Citation managers apply their own formatting; inspect the imported record.</p>
+    <p>Open <strong>Quote and cite a line or range</strong> in any scene. Enter one reference or an inclusive start and end, choose MLA parenthetical or Chicago shortened-note output, and copy either text plus citation or citation only. A separate Works Cited / bibliography entry identifies the Reading Desk rendition actually consulted. Publication dates and the exact local Folger snapshot remain unverified: the tool deliberately does not transfer web-edition editor credits or dates to the local rendition.</p>
+    <p>APA 7 uses an indented, double-spaced block for 40 words or more, with no enclosing quotation marks and the citation after closing punctuation. This undated rendition uses n.d.; no original publication year is inferred. References use sentence case and do not require retrieval dates merely because the source is undated. See <a href="https://apastyle.apa.org/style-grammar-guidelines/citations/quotations">APA’s quotation guidance</a>. Check proper nouns in newly added play titles.</p>
+    <p>For MLA, up to three verse lines can run in with spaced slashes; four or more should be blocked. Prose runs in with spaces, not slashes: use a block if it exceeds four typed lines in your document, not four source lines. Multi-speaker dialogue recommends a block. See <a href="https://owl.purdue.edu/owl/research_and_citation/mla_style/mla_formatting_and_style_guide/mla_formatting_quotations.html">Purdue OWL’s MLA quotation guidance</a>.</p>
+    <p>Chicago generally recommends a prose block at about 100 words. Short verse can run in with slashes; the conservative default recommends a block above three verse lines, not a universal Chicago cutoff. See <a href="https://owl.purdue.edu/owl/research_and_citation/chicago_manual_17th_edition/cmos_formatting_and_style_guide/general_format.html">Purdue OWL’s Chicago/Turabian guidance</a> and <a href="https://www.chicagomanualofstyle.org/tools_citationguide/citation-guide-1.html">Chicago’s notes and bibliography examples</a>. Insert the shortened note as a footnote/endnote and pair it with the bibliography entry; this is not author–date output.</p>
+    <p>Block and compact overrides are always available. Compact overrides for long verse or dialogue are labelled as departures from the recommendation. Rich copy preserves title italics and block structure; plain-text copying needs italics and document-specific indentation/spacing after pasting. Check your institution's requirements, shared verse lines, songs, editorial signs, and original indentation. The supplied conversion cannot guarantee original typography.</p>
+    <p>Ranges retain intervening stage directions and unnumbered text. Directions outside the selected line boundaries are not included. Section-change labels in brackets are tool additions. Named references such as EPI.22 use this corpus’s notation. Copying a citation does not replace the license attribution below.</p>
+    <h2>Available texts and source records</h2>
+    {plays.map(play => {
+      const source = sourceFor(play.play_id);
+      return <section id={play.play_id}>
+        <h3>{play.title}</h3>
+        <p>Playwright credit: {authorCredit(play.play_id).full}.</p>
+        {source ? <>
+          <p><a href={source.url}>Read the original on Folger ↗</a></p>
+          <p>{source.verified && source.editors ? `Web edition editors: ${source.editors.join(', ')}.` : 'Editor credits and edition date: not yet verified.'}</p>
+          {source.evidence && <p><a href={source.evidence}>Credit evidence</a> · checked {source.checkedOn}</p>}
+        </> : <p>No verified Folger source mapping is recorded for this play yet.</p>}
+      </section>;
+    })}
+    <h2>Rights and attribution</h2>
+    <p>Folger-derived text © Folger Shakespeare Library, licensed under <a href="https://creativecommons.org/licenses/by-nc/3.0/">Creative Commons Attribution–NonCommercial 3.0</a>. Retain attribution, the license link, and notice of changes. Noncommercial use only. This project’s original code is MIT licensed; that does not relicense the text.</p>
+    <p>This independent project is not affiliated with or endorsed by Folger.</p>
+  </main>
+</Layout>

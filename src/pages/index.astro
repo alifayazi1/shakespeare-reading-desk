@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { discoverPlays } from '../lib/plays';
+import { scenePath } from '../lib/reader';
+import { sourceFor } from '../lib/citations';
+const plays = discoverPlays();
+---
+<Layout title="Library">
+  <main id="main" class="home">
+    <h1>A place for close reading.</h1>
+    <p class="intro">Find a passage, cite it easily.</p>
+    <p>For reading the plays with their original editorial context, I recommend <a href="https://www.folger.edu/explore/shakespeares-works/">Folger’s website</a>. Use this website for flexible passage searching and easier quotation and citation. <a href="/about/">What this project is good for →</a></p>
+    <h2>Library · {plays.length} plays</h2>
+    <p>Built with gratitude from <a href="https://www.folger.edu/explore/shakespeares-works/">Folger Digital Texts</a>.</p>
+    {plays.map(play => (
+      <section class="book" aria-labelledby={`title-${play.play_id}`}>
+        <h2 id={`title-${play.play_id}`}>{play.title}</h2>
+        <div class="book-links">
+          <a href={scenePath(play.sections[0].slug, play.play_id)}>Start reading</a>
+          <a href={`/plays/${play.play_id}/search/`}>Search</a>
+          <a href={`/plays/${play.play_id}/lines/`}>Line index</a>
+          {sourceFor(play.play_id) && <a href={sourceFor(play.play_id)!.url}>Folger ↗</a>}
+        </div>
+      </section>
+    ))}
+
+    <p><a href="/sources/">Sources and citation guidance</a></p>
+  </main>
+</Layout>

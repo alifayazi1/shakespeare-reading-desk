@@ -1,0 +1,344 @@
+{
+  "MND": {
+    "play_id": "MND",
+    "title": "A Midsummer Night’s Dream",
+    "is_dramatic": true,
+    "n_acts": 5,
+    "n_scenes": 9,
+    "n_characters": 30,
+    "persongrp_ratio": 6.7
+  },
+  "AWW": {
+    "play_id": "AWW",
+    "title": "All’s Well That Ends Well",
+    "is_dramatic": true,
+    "n_acts": 5,
+    "n_scenes": 24,
+    "n_characters": 38,
+    "persongrp_ratio": 28.9
+  },
+  "Ant": {
+    "play_id": "Ant",
+    "title": "Antony and Cleopatra",
+    "is_dramatic": true,
+    "n_acts": 5,
+    "n_scenes": 42,
+    "n_characters": 91,
+    "persongrp_ratio": 19.8
+  },
+  "AYL": {
+    "play_id": "AYL",
+    "title": "As You Like It",
+    "is_dramatic": true,
+    "n_acts": 5,
+    "n_scenes": 23,
+    "n_characters": 33,
+    "persongrp_ratio": 18.2
+  },
+  "Cor": {
+    "play_id": "Cor",
+    "title": "Coriolanus",
+    "is_dramatic": true,
+    "n_acts": 5,
+    "n_scenes": 29,
+    "n_characters": 83,
+    "persongrp_ratio": 38.6
+  },
+  "Cym": {
+    "play_id": "Cym",
+    "title": "Cymbeline",
+    "is_dramatic": true,
+    "n_acts": 5,
+    "n_scenes": 27,
+    "n_characters": 60,
+    "persongrp_ratio": 31.7
+  },
+  "Ham": {
+    "play_id": "Ham",
+    "title": "Hamlet",
+    "is_dramatic": true,
+    "n_acts": 5,
+    "n_scenes": 20,
+    "n_characters": 45,
+    "persongrp_ratio": 24.4
+  },
+  "1H4": {
+    "play_id": "1H4",
+    "title": "Henry IV, Part I",
+    "is_dramatic": true,
+    "n_acts": 5,
+    "n_scenes": 19,
+    "n_characters": 45,
+    "persongrp_ratio": 22.2
+  },
+  "2H4": {
+    "play_id": "2H4",
+    "title": "Henry IV, Part 2",
+    "is_dramatic": true,
+    "n_acts": 7,
+    "n_scenes": 17,
+    "n_characters": 65,
+    "persongrp_ratio": 15.4
+  },
+  "H5": {
+    "play_id": "H5",
+    "title": "Henry V",
+    "is_dramatic": true,
+    "n_acts": 6,
+    "n_scenes": 28,
+    "n_characters": 61,
+    "persongrp_ratio": 16.4
+  },
+  "1H6": {
+    "play_id": "1H6",
+    "title": "Henry VI, Part 1",
+    "is_dramatic": true,
+    "n_acts": 5,
+    "n_scenes": 27,
+    "n_characters": 91,
+    "persongrp_ratio": 26.4
+  },
+  "2H6": {
+    "play_id": "2H6",
+    "title": "Henry VI, Part 2",
+    "is_dramatic": true,
+    "n_acts": 5,
+    "n_scenes": 24,
+    "n_characters": 101,
+    "persongrp_ratio": 24.8
+  },
+  "3H6": {
+    "play_id": "3H6",
+    "title": "Henry VI, Part 3",
+    "is_dramatic": true,
+    "n_acts": 5,
+    "n_scenes": 28,
+    "n_characters": 74,
+    "persongrp_ratio": 25.7
+  },
+  "H8": {
+    "play_id": "H8",
+    "title": "Henry VIII",
+    "is_dramatic": true,
+    "n_acts": 6,
+    "n_scenes": 17,
+    "n_characters": 72,
+    "persongrp_ratio": 26.4
+  },
+  "JC": {
+    "play_id": "JC",
+    "title": "Julius Caesar",
+    "is_dramatic": true,
+    "n_acts": 5,
+    "n_scenes": 18,
+    "n_characters": 62,
+    "persongrp_ratio": 16.1
+  },
+  "Jn": {
+    "play_id": "Jn",
+    "title": "King John",
+    "is_dramatic": true,
+    "n_acts": 5,
+    "n_scenes": 16,
+    "n_characters": 40,
+    "persongrp_ratio": 27.5
+  },
+  "Lr": {
+    "play_id": "Lr",
+    "title": "King Lear",
+    "is_dramatic": true,
+    "n_acts": 5,
+    "n_scenes": 26,
+    "n_characters": 58,
+    "persongrp_ratio": 44.8
+  },
+  "LLL": {
+    "play_id": "LLL",
+    "title": "Love’s Labor’s Lost",
+    "is_dramatic": true,
+    "n_acts": 5,
+    "n_scenes": 9,
+    "n_characters": 24,
+    "persongrp_ratio": 12.5
+  },
+  "Mac": {
+    "play_id": "Mac",
+    "title": "Macbeth",
+    "is_dramatic": true,
+    "n_acts": 5,
+    "n_scenes": 28,
+    "n_characters": 55,
+    "persongrp_ratio": 20.0
+  },
+  "MM": {
+    "play_id": "MM",
+    "title": "Measure for Measure",
+    "is_dramatic": true,
+    "n_acts": 5,
+    "n_scenes": 17,
+    "n_characters": 34,
+    "persongrp_ratio": 14.7
+  },
+  "Ado": {
+    "play_id": "Ado",
+    "title": "Much Ado About Nothing",
+    "is_dramatic": true,
+    "n_acts": 5,
+    "n_scenes": 17,
+    "n_characters": 31,
+    "persongrp_ratio": 12.9
+  },
+  "Oth": {
+    "play_id": "Oth",
+    "title": "Othello",
+    "is_dramatic": true,
+    "n_acts": 5,
+    "n_scenes": 15,
+    "n_characters": 35,
+    "persongrp_ratio": 25.7
+  },
+  "Per": {
+    "play_id": "Per",
+    "title": "Pericles, Prince of Tyre",
+    "is_dramatic": true,
+    "n_acts": 5,
+    "n_scenes": 28,
+    "n_characters": 89,
+    "persongrp_ratio": 27.0
+  },
+  "R2": {
+    "play_id": "R2",
+    "title": "Richard II",
+    "is_dramatic": true,
+    "n_acts": 5,
+    "n_scenes": 19,
+    "n_characters": 55,
+    "persongrp_ratio": 25.5
+  },
+  "R3": {
+    "play_id": "R3",
+    "title": "Richard III",
+    "is_dramatic": true,
+    "n_acts": 5,
+    "n_scenes": 25,
+    "n_characters": 75,
+    "persongrp_ratio": 20.0
+  },
+  "Rom": {
+    "play_id": "Rom",
+    "title": "Romeo and Juliet",
+    "is_dramatic": true,
+    "n_acts": 6,
+    "n_scenes": 25,
+    "n_characters": 51,
+    "persongrp_ratio": 21.6
+  },
+  "Err": {
+    "play_id": "Err",
+    "title": "The Comedy of Errors",
+    "is_dramatic": true,
+    "n_acts": 5,
+    "n_scenes": 11,
+    "n_characters": 26,
+    "persongrp_ratio": 19.2
+  },
+  "MV": {
+    "play_id": "MV",
+    "title": "The Merchant of Venice",
+    "is_dramatic": true,
+    "n_acts": 5,
+    "n_scenes": 20,
+    "n_characters": 35,
+    "persongrp_ratio": 22.9
+  },
+  "Wiv": {
+    "play_id": "Wiv",
+    "title": "The Merry Wives of Windsor",
+    "is_dramatic": true,
+    "n_acts": 5,
+    "n_scenes": 23,
+    "n_characters": 25,
+    "persongrp_ratio": 4.0
+  },
+  "Shr": {
+    "play_id": "Shr",
+    "title": "The Taming of the Shrew",
+    "is_dramatic": true,
+    "n_acts": 6,
+    "n_scenes": 14,
+    "n_characters": 47,
+    "persongrp_ratio": 12.8
+  },
+  "Tmp": {
+    "play_id": "Tmp",
+    "title": "The Tempest",
+    "is_dramatic": true,
+    "n_acts": 5,
+    "n_scenes": 10,
+    "n_characters": 20,
+    "persongrp_ratio": 10.0
+  },
+  "TGV": {
+    "play_id": "TGV",
+    "title": "The Two Gentlemen of Verona",
+    "is_dramatic": true,
+    "n_acts": 5,
+    "n_scenes": 20,
+    "n_characters": 22,
+    "persongrp_ratio": 13.6
+  },
+  "TNK": {
+    "play_id": "TNK",
+    "title": "The Two Noble Kinsmen",
+    "is_dramatic": true,
+    "n_acts": 6,
+    "n_scenes": 25,
+    "n_characters": 58,
+    "persongrp_ratio": 27.6
+  },
+  "WT": {
+    "play_id": "WT",
+    "title": "The Winter’s Tale",
+    "is_dramatic": true,
+    "n_acts": 5,
+    "n_scenes": 15,
+    "n_characters": 45,
+    "persongrp_ratio": 22.2
+  },
+  "Tim": {
+    "play_id": "Tim",
+    "title": "Timon of Athens",
+    "is_dramatic": true,
+    "n_acts": 5,
+    "n_scenes": 17,
+    "n_characters": 80,
+    "persongrp_ratio": 18.8
+  },
+  "Tit": {
+    "play_id": "Tit",
+    "title": "Titus Andronicus",
+    "is_dramatic": true,
+    "n_acts": 5,
+    "n_scenes": 14,
+    "n_characters": 40,
+    "persongrp_ratio": 25.0
+  },
+  "Tro": {
+    "play_id": "Tro",
+    "title": "Troilus and Cressida",
+    "is_dramatic": true,
+    "n_acts": 7,
+    "n_scenes": 25,
+    "n_characters": 43,
+    "persongrp_ratio": 18.6
+  },
+  "TN": {
+    "play_id": "TN",
+    "title": "Twelfth Night",
+    "is_dramatic": true,
+    "n_acts": 5,
+    "n_scenes": 18,
+    "n_characters": 26,
+    "persongrp_ratio": 23.1
+  }
+}

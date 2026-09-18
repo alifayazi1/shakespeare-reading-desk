@@ -1,0 +1,13 @@
+---
+import type { TextEntry } from '../lib/reader';
+interface Props { entry: TextEntry; anchor: string }
+const { entry, anchor } = Astro.props;
+---
+{entry.kind === 'line' ? (
+  <div class="verse-line" id={anchor} data-ref={entry.ftln}>
+    <a class="line-number" href={`#${anchor}`} aria-label={`Link to line ${entry.ftln ?? 'without a reference'}`}>{entry.ftln ?? '—'}</a>
+    <span class="line-text">{entry.text}</span>
+  </div>
+) : (
+  <p class={entry.kind === 'label' ? 'text-label' : 'stage-direction'} id={anchor}>{entry.text}</p>
+)}

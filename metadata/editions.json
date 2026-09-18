@@ -1,0 +1,385 @@
+{
+  "$comment": "Folger website slugs for each play, transcribed from folger-website-play-names-url.txt (URL pattern: https://www.folger.edu/explore/shakespeares-works/{slug}/). verified refers ONLY to the web editor credit, not the local JSON snapshot or publication date. Evidence pages credit 'Barbara Mowat and Paul Werstine, Editors of the Folger Shakespeare Library Editions'. Null credits remain unverified. Record evidence and checkedOn when adding credits.",
+  "plays": {
+    "Err": {
+      "slug": "the-comedy-of-errors",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/the-comedy-of-errors/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "MND": {
+      "slug": "a-midsummer-nights-dream",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/a-midsummer-nights-dream/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "AWW": {
+      "slug": "alls-well-that-ends-well",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/alls-well-that-ends-well/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "Ant": {
+      "slug": "antony-and-cleopatra",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/antony-and-cleopatra/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "AYL": {
+      "slug": "as-you-like-it",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/as-you-like-it/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "Cor": {
+      "slug": "coriolanus",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/coriolanus/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "Cym": {
+      "slug": "cymbeline",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/cymbeline/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "Ham": {
+      "slug": "hamlet",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/hamlet/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "1H4": {
+      "slug": "henry-iv-part-1",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/henry-iv-part-1/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "2H4": {
+      "slug": "henry-iv-part-2",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/henry-iv-part-2/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "H5": {
+      "slug": "henry-v",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/henry-v/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "1H6": {
+      "slug": "henry-vi-part-1",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/henry-vi-part-1/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "2H6": {
+      "slug": "henry-vi-part-2",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/henry-vi-part-2/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "3H6": {
+      "slug": "henry-vi-part-3",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/henry-vi-part-3/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "H8": {
+      "slug": "henry-viii",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/henry-viii/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "JC": {
+      "slug": "julius-caesar",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/julius-caesar/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "Jn": {
+      "slug": "king-john",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/king-john/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "Lr": {
+      "slug": "king-lear",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/king-lear/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "LLL": {
+      "slug": "loves-labors-lost",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/loves-labors-lost/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "Mac": {
+      "slug": "macbeth",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/macbeth/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "MM": {
+      "slug": "measure-for-measure",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/measure-for-measure/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "MV": {
+      "slug": "the-merchant-of-venice",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/the-merchant-of-venice/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "Wiv": {
+      "slug": "the-merry-wives-of-windsor",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/the-merry-wives-of-windsor/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "Ado": {
+      "slug": "much-ado-about-nothing",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/much-ado-about-nothing/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "Oth": {
+      "slug": "othello",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/othello/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "Per": {
+      "slug": "pericles",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/pericles/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "R2": {
+      "slug": "richard-ii",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/richard-ii/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "R3": {
+      "slug": "richard-iii",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/richard-iii/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "Rom": {
+      "slug": "romeo-and-juliet",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/romeo-and-juliet/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "Shr": {
+      "slug": "the-taming-of-the-shrew",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/the-taming-of-the-shrew/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "Tmp": {
+      "slug": "the-tempest",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/the-tempest/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "Tim": {
+      "slug": "timon-of-athens",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/timon-of-athens/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "Tit": {
+      "slug": "titus-andronicus",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/titus-andronicus/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "Tro": {
+      "slug": "troilus-and-cressida",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/troilus-and-cressida/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "TN": {
+      "slug": "twelfth-night",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/twelfth-night/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "TGV": {
+      "slug": "the-two-gentlemen-of-verona",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/the-two-gentlemen-of-verona/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "TNK": {
+      "slug": "the-two-noble-kinsmen",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/the-two-noble-kinsmen/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    },
+    "WT": {
+      "slug": "the-winters-tale",
+      "editors": [
+        "Barbara Mowat",
+        "Paul Werstine"
+      ],
+      "verified": true,
+      "evidence": "https://www.folger.edu/explore/shakespeares-works/the-winters-tale/an-introduction-to-this-text/",
+      "checkedOn": "2026-09-17"
+    }
+  }
+}

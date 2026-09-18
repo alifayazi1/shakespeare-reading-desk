@@ -1,0 +1,6 @@
+{
+  "framework": "astro",
+  "buildCommand": "npm run check && npm run build && npm run validate && npm test",
+  "installCommand": "npm ci",
+  "outputDirectory": "dist"
+}

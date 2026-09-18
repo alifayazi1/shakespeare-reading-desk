@@ -1,0 +1,129 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import TextEntry from '../../../components/TextEntry.astro';
+import { discoverPlays, type AvailablePlay } from '../../../lib/plays';
+import { scenePath, anchorFor, lineEntries, type Section } from '../../../lib/reader';
+import CitationTool from '../../../components/CitationTool.astro';
+import { sourceFor } from '../../../lib/citations';
+export function getStaticPaths() {
+  return discoverPlays().flatMap(play => play.sections.map((section, index) => ({
+    params: { play: play.play_id, section: section.slug }, props: { play, section, index },
+  })));
+}
+interface Props { play: AvailablePlay; section: Section; index: number }
+const { play, section, index } = Astro.props;
+const sections = play.sections;
+const source = sourceFor(play.play_id);
+const previous = sections[index - 1];
+const next = sections[index + 1];
+---
+<Layout title={`${section.title} · ${play.title}`}>
+  <div class="reader-layout">
+    <aside class="sidebar">
+      <details open>
+        <summary>Contents · {play.title}</summary>
+        <nav aria-label="Play sections">
+          {sections.map(item => <a href={scenePath(item.slug, play.play_id)} aria-current={item.slug === section.slug ? 'page' : undefined}>{item.title}</a>)}
+        </nav>
+      </details>
+    </aside>
+    <main id="main" class="reader">
+      <a href="/">← Library</a>
+      <h1>{play.title}</h1>
+      <h2>{section.title}</h2>
+      {source && <p><a href={source.url}>Read the original on Folger ↗</a></p>}
+      <p><a href={`/sources/#${play.play_id}`}>Sources and citation guidance</a></p>
+      <div class="scene-tools">
+        <label for="scene-selector">Choose a scene (opens immediately)</label>
+        <select id="scene-selector" disabled>
+          {sections.map(item => <option value={scenePath(item.slug, play.play_id)} selected={item.slug === section.slug}>{item.title}</option>)}
+        </select>
+        <form data-play={play.play_id} id="go-to-line" novalidate hidden>
+          <label for="ftln-input">Go to a line (act.scene.line)</label>
+          <div class="line-jump">
+            <input id="ftln-input" name="ftln" type="text" autocomplete="off" aria-describedby="ftln-error" placeholder="e.g. 2.1.45" />
+            <button type="submit">Go</button>
+          </div>
+          <p id="ftln-error" class="error" role="alert" hidden></p>
+        </form>
+        <p class="tool-links"><a href={`/plays/${play.play_id}/search/`}>Search the text</a> · <a href={`/plays/${play.play_id}/lines/`}>Browse the full line index</a></p>
+        <noscript><p>The line index above works without JavaScript.</p></noscript>
+        <small>Line references use act.scene.line or named references such as EPI.22 from the supplied JSON, not page numbers.</small>
+      </div>
+      <CitationTool playId={play.play_id} title={play.title} firstRef={lineEntries(section)[0]?.ftln ?? ''} />
+      <p id="cite-selection-help">Select passage text to reveal “Cite this range”, then click it or press Alt+Shift+C. Partial selections expand to whole numbered lines. You can also enter references in the citation panel above.</p>
+      <button type="button" id="cite-selection" class="cite-selection" aria-controls="quote-and-cite" aria-describedby="cite-selection-help" aria-keyshortcuts="Alt+Shift+C" hidden>Cite this range</button>
+      <span id="cite-selection-status" class="sr-only" role="status"></span>
+      <article class="play-text" aria-label={section.title}>
+        {section.content.map((entry, entryIndex) => 'content' in entry ? (
+          <div class="speech">
+            {entry.kind === 'speech' && <div class="speaker">{entry.speaker_label ?? 'Unidentified speaker'}</div>}
+            {entry.content.map((child, childIndex) => <TextEntry entry={child} anchor={anchorFor(child, entryIndex, childIndex)} />)}
+          </div>
+        ) : <TextEntry entry={entry} anchor={anchorFor(entry, entryIndex, null)} />)}
+      </article>
+      <nav class="pagination" aria-label="Adjacent sections">
+        {previous && <a href={scenePath(previous.slug, play.play_id)}>← {previous.title}</a>}
+        {next && <a href={scenePath(next.slug, play.play_id)}>{next.title} →</a>}
+        {!next && <a href="/">Return to library</a>}
+      </nav>
+    </main>
+  </div>
+</Layout>
+<script>
+  import { isScenePath } from '../../../lib/reader';
+  const selector = document.querySelector<HTMLSelectElement>('#scene-selector');
+  selector?.addEventListener('change', () => { window.location.assign(selector.value); });
+  if (selector) selector.disabled = false;
+
+  const form = document.querySelector<HTMLFormElement>('#go-to-line');
+  const input = document.querySelector<HTMLInputElement>('#ftln-input');
+  const error = document.querySelector<HTMLParagraphElement>('#ftln-error');
+  import type { IndexedLine } from '../../../lib/reader';
+  let index: IndexedLine[] | null = null;
+  let pending = false;
+  form?.addEventListener('submit', async event => {
+    event.preventDefault();
+    if (!error || !input || pending) return;
+    error.hidden = true;
+    input.removeAttribute('aria-invalid');
+    const report = (message: string, invalid = false) => {
+      error.textContent = message;
+      error.hidden = false;
+      if (invalid) input.setAttribute('aria-invalid', 'true');
+      input.focus();
+    };
+    const value = input.value.trim();
+    if (!/^(?:\d+\.\d+\.\d+|(?:\d+\.)?[A-Za-z][A-Za-z0-9_-]*(?:\.\d+)+)$/.test(value)) {
+      report('Use act.scene.line — three numbers with dots, like 2.1.45 — or a supplied named reference such as EPI.22.', true);
+      return;
+    }
+    pending = true;
+    form.setAttribute('aria-busy', 'true');
+    try {
+      if (!index) {
+        const response = await fetch(`/plays/${form.dataset.play}/lines.json`);
+        if (!response.ok) throw new Error('Index request failed');
+        const data: unknown = await response.json();
+        if (!Array.isArray(data) || !data.every(line => line &&
+          typeof line.ftln === 'string' && typeof line.anchor === 'string' &&
+          typeof line.path === 'string' && isScenePath(line.path, form.dataset.play ?? ''))) {
+          throw new Error('Invalid line index');
+        }
+        index = data as IndexedLine[];
+      }
+      const hit = index.find(line => line.ftln.toLowerCase() === value.toLowerCase());
+      if (!hit) {
+        report(`No line ${value} in this play. Check the scene number — the full line index lists every line.`, true);
+        return;
+      }
+      window.location.assign(`${hit.path}#${encodeURIComponent(hit.anchor)}`);
+    } catch {
+      report('The line index could not be loaded. Check your connection and try again, or browse the full line index.');
+    } finally {
+      pending = false;
+      form.removeAttribute('aria-busy');
+    }
+  });
+  if (form && input && error) form.hidden = false;
+</script>

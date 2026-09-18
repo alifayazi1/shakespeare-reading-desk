@@ -1,0 +1,53 @@
+---
+import { citationStyles, styleChoices } from '../lib/citation-styles';
+interface Props { playId: string; title: string; firstRef: string }
+const { playId, title, firstRef } = Astro.props;
+---
+<details class="citation-tool" id="quote-and-cite">
+  <summary>Quote and cite a line or range</summary>
+  <p>Select references from anywhere in {title}. Leave the end blank for one line. <a href={`/plays/${playId}/lines/`}>Full line index</a> · <a href="/sources/#quotation-guidance">Style and source guidance</a></p>
+  <form id="citation-form" data-play={playId} data-title={title} hidden>
+    <div class="citation-fields">
+      <label>Start line<input name="start" value={firstRef} required autocomplete="off" placeholder="e.g. 1.1.1" /></label>
+      <label>End line (optional)<input name="end" autocomplete="off" placeholder="Blank for one line" /></label>
+      <div class="citation-field"><label for="citation-style">Citation style</label><select id="citation-style" name="style">{styleChoices.map(style => <option value={style.value}>{style.label}</option>)}</select></div>
+      <label>Copy contents<select name="contents"><option value="text">Text + citation</option><option value="citation">Citation only</option></select></label>
+      <label>Quotation layout<select name="layout"><option value="auto">Recommended for this passage</option><option value="block">Block quotation</option><option value="compact">Compact · verse slashes / prose spaces</option><option value="lines">Block · preserve source lines</option><option value="slash">One line · slash-separated</option></select></label>
+      <label>Access date<input name="accessed" type="date" required /></label>
+    </div>
+    <fieldset id="citation-custom" class="citation-custom" hidden disabled>
+      <legend>Custom formatting (not a standard citation style)</legend>
+      <div class="citation-fields">
+        <div class="citation-field"><label for="citation-base">Base style</label><select id="citation-base" name="base">{Object.entries(citationStyles).map(([value, style]) => <option value={value}>{style.label}</option>)}</select></div>
+        <div class="citation-field"><label for="citation-separator">Line separator</label><select id="citation-separator" name="separator"><option value="source">Source line breaks</option><option value="slash">Spaced slashes</option><option value="space">Spaces</option><option value="custom">Custom separator</option></select></div>
+        <label>Custom separator<input name="delimiter" value=" | " maxlength="80" /></label>
+        <label>Speaker labels<select name="speakers"><option value="yes">Include</option><option value="no">Omit</option></select></label>
+        <label>Inline quotation marks<select name="marks"><option value="yes">Include</option><option value="no">Omit</option></select></label>
+      </div>
+      <p>The separator overrides the layout’s line joining. Block layouts omit quotation marks. Check your assignment before using custom output.</p>
+    </fieldset>
+    <p>Standard prose blocks reflow text; verse retains line breaks. Use the source-line or slash override for explicit boundaries. APA 7 recommends a block at 40 words. Preview to see passage-specific guidance.</p>
+    <button type="submit">Preview citation</button>
+    <p id="citation-status" role="status" aria-live="polite"></p>
+    <div id="citation-output" hidden>
+      <h3>Copy preview</h3>
+      <p id="citation-layout-status" class="citation-layout-status"></p>
+      <div id="citation-preview" class="citation-preview"></div>
+      <div class="citation-actions"><button type="button" data-copy="rich">Copy formatted</button><button type="button" data-copy="plain">Copy plain text</button></div>
+      <label>Plain-text output<textarea id="citation-plain" readonly rows="6"></textarea></label>
+      <h3 id="citation-source-heading">Works Cited entry</h3>
+      <p>This entry identifies the Reading Desk rendition you used, not a verified Folger edition snapshot. Pair it with the passage citation above.</p>
+      <div id="citation-source-preview" class="citation-preview"></div>
+      <div class="citation-actions"><button type="button" data-copy="source">Copy source entry</button><button type="button" data-export="ris">Download RIS</button><button type="button" data-export="bib">Download BibTeX</button></div>
+      <p>Downloads contain source metadata and the selected range, not quotation text. Citation managers apply their own styles.</p>
+      <label>Source entry (plain text)<textarea id="citation-source" readonly rows="4"></textarea></label>
+      <ul id="citation-guidance" class="citation-guidance"></ul>
+      <p>Quotation boundaries follow numbered lines; intervening directions are included, but directions before the start or after the end are not. Check shared verse lines, songs, indentation, and editorial signs against the original before submitting.</p>
+      <p>Folger-derived text © Folger Shakespeare Library · <a href="https://creativecommons.org/licenses/by-nc/3.0/">CC BY-NC 3.0</a> · downstream JSON rendition. Citation formatting does not replace license attribution.</p>
+    </div>
+  </form>
+  <noscript><p>The interactive citation tool requires JavaScript. Use the full line index and source guidance above to cite manually.</p></noscript>
+</details>
+<script>
+  import '../scripts/citation-tool';
+</script>
